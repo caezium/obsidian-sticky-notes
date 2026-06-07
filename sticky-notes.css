@@ -35,10 +35,19 @@ body {
 
 
 
-.callout.callout[data-callout~=sticky]:is([data-callout-metadata~=right]) {
+.callout.callout[data-callout~=sticky]:is([data-callout-metadata~=right]):not([data-callout-metadata~=aside]) {
   float: right;
   margin: unset;
   margin-left: 8px;
+}
+
+/* `left` float — mirror of `right`; the sticky floats inside the text column
+   and the paragraph wraps around it. v1.4 dropped the `left` float, which is
+   why issue #5 ("how to float left/right?") couldn't get it to work. */
+.callout.callout[data-callout~=sticky]:is([data-callout-metadata~=left]):not([data-callout-metadata~=aside]) {
+  float: left;
+  margin: unset;
+  margin-right: 8px;
 }
 
 .callout.callout.callout[data-callout~=sticky]:is([data-callout-metadata~=ctr],
@@ -129,28 +138,67 @@ body {
 } 
 
 /* ===================================================
-   ASIDES
+   ASIDES  — sticky sits in the margin beside the text
+   (Cornell "cue" style).
+
+   Robustness fix (issue #4 "works in one vault, not another"):
+   the old rules anchored the right aside to var(--file-line-width).
+   That value points at the *readable* line width, so in vaults where
+   "Readable line length" is off — or where a theme doesn't expose it —
+   the aside landed in the middle of the text or off-screen. We now
+   anchor to the content block itself (100% + offset), which is the real
+   column edge in every vault, with no dependency on --file-line-width.
    =================================================== */
 
-
-:is(.markdown-source-view .cm-callout, div:not([class])):has(> .callout[data-callout-metadata*="aside"]) {
+/* the block wrapping the callout becomes the positioning context */
+:is(
+  .markdown-preview-view div:not([class]),
+  .markdown-source-view .cm-callout,
+  div:not([class])
+):has(> .callout[data-callout~=sticky][data-callout-metadata*="aside"]) {
   position: relative;
   overflow: visible;
 }
 
-.callout[data-callout-metadata*="aside"] {
+.callout[data-callout~=sticky][data-callout-metadata*="aside"] {
   position: absolute;
+  top: 0;
+  float: none;
+  margin: 0;
+  width: var(--sticky-width);
+  max-width: var(--sticky-width);
 }
 
-.callout[data-callout-metadata~="aside"][data-callout-metadata~="left"],
-.callout[data-callout-metadata~="aside"]:not([data-callout-metadata~="right"]) {
-  left: calc(-1 * (var(--sticky-width) + var(--sticky-offset)));
+/* left margin — default for `aside`, or explicit `aside left` */
+.callout[data-callout~=sticky][data-callout-metadata~="aside"]:not([data-callout-metadata~="right"]) {
   right: calc(100% + var(--sticky-offset));
+  left: auto;
 }
 
-.callout[data-callout-metadata~="aside"][data-callout-metadata~="right"] {
-  left: calc(var(--file-line-width) + var(--sticky-offset));
-  right: calc(-1 * var(--sticky-width));
+/* right margin — `aside right` */
+.callout[data-callout~=sticky][data-callout-metadata~="aside"][data-callout-metadata~="right"] {
+  left: calc(100% + var(--sticky-offset));
+  right: auto;
+}
+
+/* Live Preview / source mode (issue #1 "asides are invisible in live preview"):
+   instead of pushing the note into a margin that the editor clips away, keep it
+   in-flow as a dimmed float so it stays visible and editable. */
+.markdown-source-view .callout[data-callout~=sticky][data-callout-metadata*="aside"] {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  max-width: calc(100% - var(--sticky-offset));
+  opacity: 0.6;
+}
+.markdown-source-view .callout[data-callout~=sticky][data-callout-metadata~="aside"]:not([data-callout-metadata~="right"]) {
+  float: left;
+  margin-right: var(--sticky-offset);
+}
+.markdown-source-view .callout[data-callout~=sticky][data-callout-metadata~="aside"][data-callout-metadata~="right"] {
+  float: right;
+  margin-left: var(--sticky-offset);
 }
 
 
