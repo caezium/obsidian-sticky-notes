@@ -230,6 +230,22 @@ body {
 }
 
 
+/* ===================================================
+   ZOOM ON HOVER  (opt-in)
+   Off by default. Turn on "Zoom sticky notes on hover" in Style Settings.
+   v1.4 removed always-on zoom as experimental; this puts it behind a toggle
+   and scopes it to Reading view so it never clips while editing.
+   =================================================== */
+.sticky-zoom .markdown-reading-view .callout[data-callout~=sticky] {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.sticky-zoom .markdown-reading-view .callout[data-callout~=sticky]:hover {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 12px rgba(40, 40, 40, 0.35);
+  z-index: 10;
+}
+
+
 /* @settings
 name: Sticky Notes
 id: sticky-notes
@@ -354,4 +370,10 @@ settings:
     max: 50
     step: 1
     format: px
+  -
+    id: sticky-zoom
+    title: Zoom on hover
+    description: Slightly enlarge a sticky note when you hover over it (Reading view only). Experimental, off by default.
+    type: class-toggle
+    default: false
 */
