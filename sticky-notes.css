@@ -135,7 +135,35 @@ body {
 
 .callout[data-callout~=sticky]:is([data-callout-metadata~=title]) .callout-content:first-line {
   font-weight: bold;
-} 
+}
+
+/* ===================================================
+   COLLAPSIBLE STICKIES
+   Add + or - after the metadata to fold a sticky:
+     > [!sticky]+   starts open      > [!sticky]-   starts closed
+   Clicking the header toggles it. v1.4 hides the callout title, which also
+   hides the fold chevron — so folding silently does nothing. Reveal the
+   title row *only* when the sticky is collapsible; plain stickies keep the
+   hidden title from v1.4. Give a collapsible sticky a title so the folded
+   bar has a label, e.g. `> [!sticky]- My note`.
+   =================================================== */
+.callout[data-callout~=sticky].is-collapsible .callout-title {
+  display: flex;
+  padding: 6px 10px;
+}
+.callout[data-callout~=sticky].is-collapsible .callout-title-inner {
+  display: block;
+  padding-top: 0;
+  font-weight: var(--bold-weight, 600);
+  color: var(--sticky-color-text);
+}
+.callout[data-callout~=sticky].is-collapsible .callout-fold {
+  display: flex;
+  color: var(--sticky-color-text);
+}
+.callout[data-callout~=sticky].is-collapsible.is-collapsed .callout-content {
+  display: none;
+}
 
 /* ===================================================
    ASIDES  — sticky sits in the margin beside the text
