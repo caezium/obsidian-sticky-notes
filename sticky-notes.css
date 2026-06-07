@@ -20,7 +20,14 @@
   --sticky-color-purple: #d3869bcc;
   --sticky-color-aqua: #8ec07ccc;
   --sticky-color-orange: #fe8019cc;
-  
+  --sticky-color-pink: #f6a7c1cc;
+  --sticky-color-brown: #b16e4bcc;
+  --sticky-color-turquoise: #40e0d0cc;
+  --sticky-color-salmon: #ffbfa3cc;
+  --sticky-color-indigo: #ceace6cc;
+  --sticky-color-magenta: #f49ac2cc;
+  --sticky-color-violet: #cb99c9cc;
+
   --sticky-color-default: #FABD2Fcc;
   --sticky-color-text: #282828;
   --sticky-note-max-width: 600px;
@@ -123,6 +130,13 @@ body {
 .callout[data-callout~=sticky]:is([data-callout-metadata~=purple]) { background-color: var(--sticky-color-purple) !important; }
 .callout[data-callout~=sticky]:is([data-callout-metadata~=aqua]) { background-color: var(--sticky-color-aqua) !important; }
 .callout[data-callout~=sticky]:is([data-callout-metadata~=orange]) { background-color: var(--sticky-color-orange) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=pink]) { background-color: var(--sticky-color-pink) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=brown]) { background-color: var(--sticky-color-brown) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=turquoise]) { background-color: var(--sticky-color-turquoise) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=salmon]) { background-color: var(--sticky-color-salmon) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=indigo]) { background-color: var(--sticky-color-indigo) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=magenta]) { background-color: var(--sticky-color-magenta) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=violet]) { background-color: var(--sticky-color-violet) !important; }
 
 .callout[data-callout~=sticky]:is([data-callout-metadata~=green]) mark { background-color: var(--sticky-color-green) !important; }
 .callout[data-callout~=sticky]:is([data-callout-metadata~=red]) mark { background-color: var(--sticky-color-red) !important; }
@@ -131,6 +145,13 @@ body {
 .callout[data-callout~=sticky]:is([data-callout-metadata~=purple]) mark { background-color: var(--sticky-color-purple) !important; }
 .callout[data-callout~=sticky]:is([data-callout-metadata~=aqua]) mark { background-color: var(--sticky-color-aqua) !important; }
 .callout[data-callout~=sticky]:is([data-callout-metadata~=orange]) mark { background-color: var(--sticky-color-orange) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=pink]) mark { background-color: var(--sticky-color-pink) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=brown]) mark { background-color: var(--sticky-color-brown) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=turquoise]) mark { background-color: var(--sticky-color-turquoise) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=salmon]) mark { background-color: var(--sticky-color-salmon) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=indigo]) mark { background-color: var(--sticky-color-indigo) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=magenta]) mark { background-color: var(--sticky-color-magenta) !important; }
+.callout[data-callout~=sticky]:is([data-callout-metadata~=violet]) mark { background-color: var(--sticky-color-violet) !important; }
 .callout[data-callout~=sticky] .callout-content mark { opacity: 1;}
 
 .callout[data-callout~=sticky]:is([data-callout-metadata~=title]) .callout-content:first-line {
@@ -312,6 +333,62 @@ settings:
     format: rgb
     opacity: true
     default: '#fe8019cc'
+  -
+    id: sticky-color-pink
+    title: Pink
+    description: Pink sticky notes
+    type: variable-color
+    format: rgb
+    opacity: true
+    default: '#f6a7c1cc'
+  -
+    id: sticky-color-brown
+    title: Brown
+    description: Brown sticky notes
+    type: variable-color
+    format: rgb
+    opacity: true
+    default: '#b16e4bcc'
+  -
+    id: sticky-color-turquoise
+    title: Turquoise
+    description: Turquoise sticky notes
+    type: variable-color
+    format: rgb
+    opacity: true
+    default: '#40e0d0cc'
+  -
+    id: sticky-color-salmon
+    title: Salmon
+    description: Salmon sticky notes
+    type: variable-color
+    format: rgb
+    opacity: true
+    default: '#ffbfa3cc'
+  -
+    id: sticky-color-indigo
+    title: Indigo
+    description: Indigo sticky notes
+    type: variable-color
+    format: rgb
+    opacity: true
+    default: '#ceace6cc'
+  -
+    id: sticky-color-magenta
+    title: Magenta
+    description: Magenta sticky notes
+    type: variable-color
+    format: rgb
+    opacity: true
+    default: '#f49ac2cc'
+  -
+    id: sticky-color-violet
+    title: Violet
+    description: Violet sticky notes
+    type: variable-color
+    format: rgb
+    opacity: true
+    default: '#cb99c9cc'
   -
     id: sticky-color-text
     title: Text color
